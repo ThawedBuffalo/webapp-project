@@ -9,10 +9,8 @@ import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,11 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoggingFilter implements Filter {
 
-
+    private static final String LOG_FILE_PATH = "logs/webapp.log";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        // Ensure logs directory exists at the webapp root
         System.out.println("[LoggingFilter] Initialized – logging every request.");
     }
 
@@ -121,10 +119,8 @@ public class LoggingFilter implements Filter {
         }
 
         @Override
-
-
-        public ServletOutputStream getOutputStream() {
-            return new ServletOutputStream() {
+        public javax.servlet.ServletOutputStream getOutputStream() {
+            return new javax.servlet.ServletOutputStream() {
                 @Override
                 public void write(int b) throws IOException {
                     printWriter.write(b);
@@ -134,9 +130,6 @@ public class LoggingFilter implements Filter {
                 public boolean isReady() {
                     return true;
                 }
-
-                @Override
-                public void setWriteListener(WriteListener listener) {}
             };
         }
 
