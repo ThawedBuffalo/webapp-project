@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Course Search</title>
+</head>
+
+<body>
+
+<h2>Student Course Search</h2>
+
+<form action="CourseSearchServlet" method="post">
+
+    <label>First Name:</label><br>
+    <input type="text" name="firstName" required><br><br>
+
+    <label>Last Name:</label><br>
+    <input type="text" name="lastName" required><br><br>
+
+    <label>Search Course:</label><br>
+    <input type="text" name="keyword" required><br><br>
+
+    Examples:
+    <ul>
+        <li>Programming</li>
+        <li>Data</li>
+        <li>Networks</li>
+        <li>Java</li>
+    </ul>
+
+    <input type="submit" value="Search">
+
+</form>
+
+</body>
+</html>
